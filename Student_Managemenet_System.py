@@ -11,5 +11,11 @@ while True:
     if again=="n":
         break
 
-print(students)
+print("-------------  Student list ---------------")
+
+for student in students:
+    print("Name",student["Name"])
+    print("Roll No.",student["Roll"])
+    print("Marks ",student["Marks"])
+
 
