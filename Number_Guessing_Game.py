@@ -53,7 +53,7 @@ while ju=="y":
             ju="y"
             break
         elif again=="n":
-            ju="nafos "
+            ju="nafis "
             break
         else :
             print("PLEASE ENTER VALID INPUT.....")
