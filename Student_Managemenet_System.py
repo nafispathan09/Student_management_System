@@ -9,7 +9,7 @@ def add_student():
             marks=int(input("Enter Student Marks    :-"))
             student={"Name":name,"Roll":roll,"Marks":marks}
             students.append(student)
-            again=input('"Press "ENTER" for new entry "n" for Exit"')
+            again=input('"Press "ENTER" for new entry "n" for Exit"').lower()
             
 
             if again=="n":
@@ -42,18 +42,19 @@ def student_update(students):
         upd=input("Press 'ENTER' for updating Roll no " + search_str +"'s details, ('n') for exit")
         if upd=="n":
             return
-        elif upd!="n":
+        else:
             newname=input("Enter new name :- ")
             newroll=int(input("Enter new roll no :- "))
             newmarks=int(input("Enter new marks"))
-        for student in students :
             found=False
+        for student in students :
+            
             if student["Roll"]==updating:
                 student["Roll"]=newroll
                 student["Name"]=newname
                 student["Marks"]=newmarks
                 upd_student=student
-                a=10
+                
                 found=True
 
                 break
@@ -61,7 +62,7 @@ def student_update(students):
         if found:
             print("updated student is ",upd_student)
         else:
-            print ("end",a)
+            print ("end")
 def delete_student(students):
         dele=input("Press 'ENTER' for deleate a student from record ('n') for exit :- ")
         found=False
@@ -69,10 +70,13 @@ def delete_student(students):
             delnum=int(input("Enter student number for deleate :- "))
             for student in students:
                 if student["Roll"]==delnum:
-                    students.remove(student)
-                    print(" Student ",delnum," deleted successfully !!!")
+                    student_to_del=student
                     found=True
                     break
+            students.remove(student_to_del)
+            print(" Student ",delnum," deleted successfully !!!")
+                
+                
         else:
             return
         if found==False:
