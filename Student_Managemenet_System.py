@@ -1,65 +1,68 @@
-while True:
-    print("hello nafis khan ")
-    print("===ENTER=====")
-    call=int(input("1 for add students\n" \
-    "2 for see student list\n3 for search student \n4 for update student\n5 for deleate student \n6 for 'EXIT'"   ))
-    
 
-
-    def add_student():
-        students=[]
+students=[]
+def add_student():
+        
         while True:
 
             name=input("Enter Student Name     :- ")
             roll=int(input("Enter Student Roll No  :- "))
             marks=int(input("Enter Student Marks    :-"))
-            again=input('"Press "ENTER" for new entry "n" for Exit"')
             student={"Name":name,"Roll":roll,"Marks":marks}
             students.append(student)
+            again=input('"Press "ENTER" for new entry "n" for Exit"')
+            
 
             if again=="n":
                 break
-        return students
-    def student_list(students):
+def student_list(students):
         print("-------------  Student list ---------------")
         for student in students:
             print("Name",student["Name"])
             print("Roll No.",student["Roll"])
             print("Marks ",student["Marks"])
-    def student_search():    
+def student_search(students):    
         search=int(input("Enter a Roll No to search a student record :- "))
-        search_str=str(search)
-        found="a"
+       
+        found=False
 
         for student in students :
             if student["Roll"]==search:
                 print("Student Name :-",student["Name"])
                 print("Student ROll :-",student["Roll"])
                 print("Student Marks :-",student["Marks"])
-                found="b"
-        if found =="a":
+                found=True
+        if found == False:
             print("Student not found !! ")
-        print("end")
+        
         return search
-    def student_update():
-        search_str=str(search)
+def student_update(students):
+        updating=int(input("Enter a number for updaating "))
+
+        search_str=str(updating)
         upd=input("Press 'ENTER' for updating Roll no " + search_str +"'s details, ('n') for exit")
-        if upd!="n":
+        if upd=="n":
+            return
+        elif upd!="n":
             newname=input("Enter new name :- ")
             newroll=int(input("Enter new roll no :- "))
             newmarks=int(input("Enter new marks"))
         for student in students :
-            if student["Roll"]==search:
+            found=False
+            if student["Roll"]==updating:
                 student["Roll"]=newroll
                 student["Name"]=newname
                 student["Marks"]=newmarks
                 upd_student=student
                 a=10
+                found=True
 
                 break
-        print("updated student is ",upd_student)
-        print ("end",a)
-    def deleate_student():
+       
+        if found:
+            print("updated student is ",upd_student)
+        else:
+            print ("end",a)
+def delete_student(students):
         dele=input("Press 'ENTER' for deleate a student from record ('n') for exit :- ")
         found=False
         if dele !="n":
@@ -70,9 +73,18 @@ while True:
                     print(" Student ",delnum," deleted successfully !!!")
                     found=True
                     break
+        else:
+            return
         if found==False:
             print("Student not found !!!")
 
+while True:
+
+    print("hello nafis khan ")
+    print("===ENTER=====")
+    call=int(input("1 for add students\n" \
+    "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for 'EXIT'"   ))
+    
     
     if call==6:
            break
@@ -81,16 +93,16 @@ while True:
         add_student()
     elif call==2:
         print("welcome to see student ")
-        student_list()
+        student_list(students)
     elif call==3:
         print("welcome to search student ")
-        student_search()
+        student_search(students)
     elif call==4:
         print("welcome to update ")
-        student_update()
+        student_update(students)
     elif call==5:
           print("welcome to delete student ")
-          deleate_student()
+          delete_student(students)
           
     else:
         print("Please enter valid input !!! ")
