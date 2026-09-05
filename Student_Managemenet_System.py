@@ -34,35 +34,40 @@ def student_search(students):
         if found == False:
             print("Student not found !! ")
         
-        return search
+        
 def student_update(students):
         updating=int(input("Enter a number for updaating "))
-
-        search_str=str(updating)
-        upd=input("Press 'ENTER' for updating Roll no " + search_str +"'s details, ('n') for exit")
-        if upd=="n":
-            return
-        else:
-            newname=input("Enter new name :- ")
-            newroll=int(input("Enter new roll no :- "))
-            newmarks=int(input("Enter new marks"))
-            found=False
+        found=False
         for student in students :
+            if updating==student["Roll"]:
+                found=True
             
-            if student["Roll"]==updating:
+                search_str=str(updating)
+                upd=input("Press 'ENTER' for updating Roll no " + search_str +"'s details, ('n') for exit").lower()
+                if upd=="n":
+                    return
+                else:
+                    newname=input("Enter new name :- ")
+                    newroll=int(input("Enter new roll no :- "))
+                    newmarks=int(input("Enter new marks"))
+                   
+            
+                  
                 student["Roll"]=newroll
                 student["Name"]=newname
                 student["Marks"]=newmarks
                 upd_student=student
-                
-                found=True
-
-                break
-       
-        if found:
-            print("updated student is ",upd_student)
-        else:
-            print ("end")
+                       
+                       
+                    
+                if found:
+                    print("updated student is ",upd_student)
+               
+        if found!=True:
+             print("Student didnt found")
+             
+            
+            
 def delete_student(students):
         dele=input("Press 'ENTER' for deleate a student from record ('n') for exit :- ")
         found=False
@@ -73,15 +78,15 @@ def delete_student(students):
                     student_to_del=student
                     found=True
                     break
-            students.remove(student_to_del)
-            print(" Student ",delnum," deleted successfully !!!")
-                
-                
+            if found:
+                 students.remove(student_to_del)
+                 print(" Student ",delnum," deleted successfully !!!")
+            else:
+                 print("Student didnt found !!!!")
+         
         else:
             return
-        if found==False:
-            print("Student not found !!!")
-
+       
 while True:
 
     print("hello nafis khan ")
