@@ -3,10 +3,50 @@ students=[]
 def add_student():
         
         while True:
+            name=input("Enter Student Name     :  ")
 
-            name=input("Enter Student Name     :- ")
-            roll=int(input("Enter Student Roll No  :- "))
-            marks=int(input("Enter Student Marks    :-"))
+            
+            while True:
+
+                 
+                try :
+
+
+                    
+                    while True:
+                        duplicate=False
+                        
+                        roll=int(input("Enter Student Roll No  :  "))
+                        for student in students:
+                            if student["Roll"]==roll:
+                                print("this roll no already exists ")
+                                duplicate=True
+                                break
+                            
+                        if duplicate==True:
+                          continue
+                        else:
+                             break
+
+                          
+                    break
+                except ValueError:
+                     print("invalid input pleae enter calid input") 
+                 
+                 
+            
+            while True:
+                try:
+                    while True:
+                        marks=int(input("Enter Student Marks    : "))
+                        if marks<0 or marks>100:
+                             print(" enter marks beetween 1 to 100")
+                             continue
+                        else:
+                            break
+                    break
+                except ValueError :
+                     print ("invalid input pleae enter calid input")
             student={"Name":name,"Roll":roll,"Marks":marks}
             students.append(student)
             again=input('"Press "ENTER" for new entry "n" for Exit"').lower()
@@ -32,9 +72,7 @@ def student_search(students):
                 print("Student Marks :-",student["Marks"])
                 found=True
         if found == False:
-            print("Student not found !! ")
-        
-        
+            print("Student not found !! ") 
 def student_update(students):
         updating=int(input("Enter a number for updaating "))
         found=False
