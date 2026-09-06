@@ -3,7 +3,13 @@ students=[]
 def add_student():
         
         while True:
-            name=input("Enter Student Name     :  ")   
+            while True:
+                name=input("Enter Student Name     :  ")
+                if name.strip()=="":
+                     print("name cant be empty")
+                     continue
+                else :
+                     break
             while True:      
                 try :
          
@@ -25,10 +31,7 @@ def add_student():
                           
                     break
                 except ValueError:
-                     print("invalid input pleae enter calid input") 
-                 
-                 
-            
+                     print("invalid input pleae enter calid input")         
             while True:
                 try:
                     while True:
@@ -41,19 +44,18 @@ def add_student():
                     break
                 except ValueError :
                      print ("invalid input pleae enter calid input")
-            student={"Name":name,"Roll":roll,"Marks":marks}
+
+            grade,result=calculate_grade(marks)
+            student={"Name":name,"Roll":roll,"Marks":marks,"Grade":grade,"Result":result}
             students.append(student)
             again=input('"Press "ENTER" for new entry "n" for Exit"').lower()
-            
-
             if again=="n":
                 break
 def student_list(students):
         print("-------------  Student list ---------------")
-        for student in students:
-            print("Name",student["Name"])
-            print("Roll No.",student["Roll"])
-            print("Marks ",student["Marks"])
+        for student in students :
+             display_student(student)
+        print("------------------------------------------")
 def student_search(students):    
         search=int(input("Enter a Roll No to search a student record :- "))
        
@@ -61,9 +63,8 @@ def student_search(students):
 
         for student in students :
             if student["Roll"]==search:
-                print("Student Name :-",student["Name"])
-                print("Student ROll :-",student["Roll"])
-                print("Student Marks :-",student["Marks"])
+                display_student(student)
+                
                 found=True
         if found == False:
             print("Student not found !! ") 
@@ -80,7 +81,29 @@ def student_update(students):
                     return
                 else:
                     newname=input("Enter new name :- ")
-                    newroll=int(input("Enter new roll no :- "))
+
+
+                    
+                    while True:
+                         found=False
+                         newroll=int(input("Enter new roll no :- "))
+                         for student in students:
+                              if student["Roll"]==newroll:
+                                   found=True
+                                   print(newroll,"this roll no is already exists enter other number !!!!")
+                                   break
+                         if found==False:
+                              break   
+                             
+                        
+
+
+                    
+
+
+
+
+
                     newmarks=int(input("Enter new marks"))
                    
             
@@ -115,13 +138,54 @@ def delete_student(students):
          
         else:
             return
-       
+def display_student(student):
+    
+        print("Name",student["Name"])
+        print("Roll No.",student["Roll"])
+        print("Marks ",student["Marks"]) 
+        print("Grade ",student["Grade"])
+        print("Result ",student["Result"])
+        print()
+         
+    
+
+def calculate_grade(marks):
+    result="pass"
+
+    if marks>=90:
+        grade="A"
+    elif marks>=75:
+         grade="B"
+    elif marks>=50:
+        grade="C"
+    elif marks>=33:
+        grade="D"
+    else:
+        grade="F"
+        result="fail"
+    
+
+    return grade , result
+
+
+
+
 while True:
 
     print("hello nafis khan ")
     print("===ENTER=====")
-    call=int(input("1 for add students\n" \
-    "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for 'EXIT'"   ))
+    print("1 for add students\n" \
+    "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for 'EXIT'"   )
+    while True:
+         try :
+                   call=int(input("add choice   :  "))
+                   break
+         except ValueError :
+                  print("enter valid choice")
+                  
+         
+    
+    
     
     
     if call==6:
