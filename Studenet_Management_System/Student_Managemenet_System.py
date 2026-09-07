@@ -52,7 +52,9 @@ def add_student():
             if again=="n":
                 break
 def student_list(students):
+        print()
         print("-------------  Student list ---------------")
+        
         for student in students :
              display_student(student)
         print("------------------------------------------")
@@ -63,7 +65,12 @@ def student_search(students):
 
         for student in students :
             if student["Roll"]==search:
+                print()
+                print("---------- FOUND -----------------")
+                
                 display_student(student)
+                
+                print("-----------------------------")
                 
                 found=True
         if found == False:
@@ -74,13 +81,24 @@ def student_update(students):
         for student in students :
             if updating==student["Roll"]:
                 found=True
+                name=student["Name"]
             
                 search_str=str(updating)
-                upd=input("Press 'ENTER' for updating Roll no " + search_str +"'s details, ('n') for exit").lower()
+                upd=input("Press 'ENTER' for updating Roll no " + search_str+"  "+name+" 's details, ('n') for exit").lower()
                 if upd=="n":
                     return
                 else:
-                    newname=input("Enter new name :- ")
+
+                    while True:
+                         newname=input("Enter new name :- ")
+                         if newname.strip()=="":
+                              print(" Name cant be empty !!!!")
+                              continue
+                         else :
+                              break
+                         
+                    
+
 
 
                     
@@ -103,8 +121,16 @@ def student_update(students):
 
 
 
+                    while True:
+                        newmarks=int(input("Enter new marks"))
+                        if newmarks<0 or newmarks>100:
+                             print("enter marks between 0 to 100")
+                             continue
+                        else:
+                             break
+                        
 
-                    newmarks=int(input("Enter new marks"))
+
                    
             
                   
@@ -118,7 +144,7 @@ def student_update(students):
                 if found:
                     print("updated student is ",upd_student)
                
-        if found!=True:
+        if found==False:
              print("Student didnt found")           
 def delete_student(students):
         dele=input("Press 'ENTER' for deleate a student from record ('n') for exit :- ")
@@ -171,11 +197,13 @@ def calculate_grade(marks):
 
 
 while True:
-
+    print()
     print("hello nafis khan ")
-    print("===ENTER=====")
+    print("==============ENTER================")
     print("1 for add students\n" \
     "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for 'EXIT'"   )
+    print("===================================")
+    
     while True:
          try :
                    call=int(input("add choice   :  "))
