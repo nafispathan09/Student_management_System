@@ -14,43 +14,79 @@ def add_student():
                 try :
          
                     while True:
-                        duplicate=False
-                        
+                        duplicate=False          
                         roll=int(input("Enter Student Roll No :   "))
                         for student in students:
                             if student["Roll"]==roll:
                                 print("this roll no already exists ")
                                 duplicate=True
                                 break
-                            
+
                         if duplicate==True:
                           continue
                         else:
                              break
-
                           
                     break
                 except ValueError:
-                     print("invalid input pleae enter calid input")         
+                     print("invalid input pleae enter valid input")         
+
+
+
+
+
+
+
+
+
             while True:
                 try:
                     while True:
-                        marks=int(input("Enter Student Marks    : "))
-                        if marks<0 or marks>100:
+                        pymarks=int(input("Enter python marks"))
+                        if pymarks<0 or pymarks>100:
                              print(" enter marks beetween 1 to 100")
                              continue
                         else:
                             break
+                    while True:                           
+                            dbmsmarks=int(input("Enter database marks"))                            
+                            if dbmsmarks<0 or dbmsmarks>100:
+                                 print(" enter marks beetween 1 to 100")
+                                 continue
+                            else:                               
+                                break
+                    while True:               
+                            javamarks=int(input("Enter java marks"))
+                            if javamarks<0 or javamarks>100:
+                                 print(" enter marks beetween 1 to 100")
+                                 continue
+                            else:                                
+                                break
                     break
+                
+                
                 except ValueError :
-                     print ("invalid input pleae enter calid input")
-
-            grade,result=calculate_grade(marks)
-            student={"Name":name,"Roll":roll,"Marks":marks,"Grade":grade,"Result":result}
+                     print ("invalid input pleae enter valid input")
+            marks=pymarks+dbmsmarks+javamarks
+            percentage=marks/300*100
+            grade,result=calculate_grade(percentage)
+            student={"Name":name,"Roll":roll,"Marks":marks,"Grade":grade,"Result":result,
+                     "py":pymarks,"dbms":dbmsmarks,"java":javamarks,"Percentage":percentage
+                     }
             students.append(student)
             again=input('"Press "ENTER" for new entry "n" for Exit"').lower()
             if again=="n":
                 break
+
+
+
+
+
+
+
+
+
+
 def student_list(students):
         print()
         print("-------------  Student list ---------------")
@@ -168,23 +204,30 @@ def display_student(student):
     
         print("Name",student["Name"])
         print("Roll No.",student["Roll"])
-        print("Marks ",student["Marks"]) 
+        print()
+        print("Python Marks ",student["py"]) 
+        print("D.B.M.S. Marks ",student["dbms"])
+        print("Java Marks ",student["java"])
         print("Grade ",student["Grade"])
+        print("Total Marks ",student["Marks"])
+        print("Percentage ",student["Percentage"])
         print("Result ",student["Result"])
+        
         print()
          
     
 
-def calculate_grade(marks):
+def calculate_grade(percentage):
     result="pass"
+    
 
-    if marks>=90:
+    if percentage>=90:
         grade="A"
-    elif marks>=75:
+    elif percentage>=75:
          grade="B"
-    elif marks>=50:
+    elif percentage>=50:
         grade="C"
-    elif marks>=33:
+    elif percentage>=33:
         grade="D"
     else:
         grade="F"
