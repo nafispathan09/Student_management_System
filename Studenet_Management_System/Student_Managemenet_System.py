@@ -84,9 +84,6 @@ def student_list(students):
         for student in students :
              display_student(student)
         print("------------------------------------------")
-
-
-
 def student_search(students):  
         choice=int(input("Enter 1 for search student by roll no\n2 for search by name "))
 
@@ -126,8 +123,6 @@ def student_search(students):
                 print("Student not found !! or different name used ")
         else:
             print("Invalid input !!!!!! ")
-
-
 def student_update(students):
         updating=int(input("Enter a number for updaating "))
         found=False
@@ -231,9 +226,6 @@ def display_student(student):
         print("Result ",student["Result"])
         
         print()
-         
-    
-
 def calculate_grade(percentage):
     result="pass"
     
@@ -254,6 +246,62 @@ def calculate_grade(percentage):
     return grade , result
 
 
+def student_sort(students):
+     print("Enter choice for sorting students \n1 for Names \n2 for Roll No \n3 for Percentages")
+     print("---------------------")
+     choice=int(input("Enter a choice ....  "))
+     print()
+     if choice==1:
+        sort_student=[]
+        
+        for student in students :
+          dicti={}
+          dicti["Name"]=student["Name"]
+          dicti["Roll"]=student["Roll"]
+          dicti["Percentage"]=student["Percentage"]
+          
+          
+          
+
+          sort_student.append(dicti)
+        print("Sorted students based on name is ")
+        print(sorted(sort_student, key=lambda student: student["Name"]))
+
+
+
+     elif choice==2:
+          sort_student=[]
+          for student in students:
+               dicti={}
+               dicti["Name"]=student["Name"]
+               dicti["Roll"]=student["Roll"]
+               dicti["Percentage"]=student["Percentage"]
+
+               sort_student.append(dicti)
+          print("sorted student based on roll no is ")
+          print(sorted(sort_student , key=lambda student:student["Roll"]))
+          
+        
+     elif choice ==3:
+          sort_student=[]
+          for student in students:
+               dicti={}
+               dicti["Name"]=student["Name"]
+               dicti['Roll']=student["Roll"]
+               dicti["Percentage"]=student["Percentage"]
+               sort_student.append(dicti)
+          print("Sorted student based on percentages is ")
+          print(sorted(sort_student,key=lambda student:student["Percentage"]))
+               
+          
+         
+     else:
+        print(" invalid choice ")
+
+
+
+
+
 
 
 while True:
@@ -261,7 +309,10 @@ while True:
     print("hello nafis khan ")
     print("==============ENTER================")
     print("1 for add students\n" \
-    "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for 'EXIT'"   )
+    "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for " \
+    "'Sorting students ' " \
+    "7 for 'EXIT '"  
+      )
     print("===================================")
     
     while True:
@@ -276,7 +327,7 @@ while True:
     
     
     
-    if call==6:
+    if call==7:
            break
     elif call==1:
         print("welcome to add student function ")
@@ -293,7 +344,9 @@ while True:
     elif call==5:
           print("welcome to delete student ")
           delete_student(students)
-          
+    elif call==6:
+         print ("Welcome to the sorting student ")
+         student_sort(students)
     else:
         print("Please enter valid input !!! ")
 
