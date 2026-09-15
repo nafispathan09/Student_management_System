@@ -300,7 +300,24 @@ def student_sort(students):
 
 
 
+def student_statics(students):
+     if len(student)==0:
+          print("Student records are completely empty !!!!!  ")
+          return
+     temp=[]
+     print("WElcome to the student statics function ")
+     print("=============================")
+     print("Total student in the record is :-  ",len(students))
+     for student in students :
+          temp.append(student["Percentage"])
+     average=sum(temp)/len(temp)
+     print("maximum percentage in the records are :-  ",max(temp))
+     print("minimum percentage in the records are :-  ",min(temp))
+     print("average percentage in the records are :-  ",average)
 
+     
+     
+     
 
 
 
@@ -311,7 +328,7 @@ while True:
     print("1 for add students\n" \
     "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for " \
     "'Sorting students ' " \
-    "7 for 'EXIT '"  
+    "7 for 'EXIT '  8 for student statics"  
       )
     print("===================================")
     
@@ -347,6 +364,8 @@ while True:
     elif call==6:
          print ("Welcome to the sorting student ")
          student_sort(students)
+    elif call==8:
+         student_statics(students)
     else:
         print("Please enter valid input !!! ")
 
