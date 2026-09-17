@@ -315,8 +315,28 @@ def student_statics(students):
      print("minimum percentage in the records are :-  ",min(temp))
      print("average percentage in the records are :-  ",average)
 
-     
-     
+
+def student_clear(students):
+     if len(students)==0:
+          print("No one student found ")
+          return 
+     print()
+     print("Welcome to the clear student function ")
+     while True:
+        again=input(('"type "Yes" for deleate all student from student data records or "n" for cancell')).lower()
+        print()
+        if again=="n":
+             print("Request cancelled !!!!! ")
+             return
+        
+        
+        elif again=="yes":
+             students.clear()
+             break
+        else:
+             print("incalid input")
+
+
      
 
 
@@ -327,8 +347,8 @@ while True:
     print("==============ENTER================")
     print("1 for add students\n" \
     "2 for see student list\n3 for search student \n4 for update student\n5 for delete student \n6 for " \
-    "'Sorting students ' " \
-    "7 for 'EXIT '  8 for student statics"  
+    "'Sorting students ' " \ 
+    "7 for 'EXIT '  8 for student statics    9 for clear all students "  
       )
     print("===================================")
     
@@ -366,6 +386,8 @@ while True:
          student_sort(students)
     elif call==8:
          student_statics(students)
+    elif call==9:
+         student_clear(students)
     else:
         print("Please enter valid input !!! ")
 
